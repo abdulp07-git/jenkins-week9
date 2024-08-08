@@ -19,7 +19,7 @@ pipeline {
                 //    junit '**/target/surefire-reports/*.xml'  // Publishes the test results
                 //}
             //}
-        //}
+        }
         stage('SonarCloud analysis') {
             steps {
                 withSonarQubeEnv('MySonarCloud') {
