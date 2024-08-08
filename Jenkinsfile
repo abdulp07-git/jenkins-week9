@@ -14,12 +14,12 @@ pipeline {
             steps {
                 sh 'mvn test'  // Runs the unit tests
             }
-            post {
-                always {
-                    junit '**/target/surefire-reports/*.xml'  // Publishes the test results
-                }
-            }
-        }
+            //post {
+              //  always {
+                //    junit '**/target/surefire-reports/*.xml'  // Publishes the test results
+                //}
+            //}
+        //}
         stage('SonarCloud analysis') {
             steps {
                 withSonarQubeEnv('MySonarCloud') {
