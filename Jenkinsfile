@@ -2,7 +2,12 @@ pipeline {
     agent any
     triggers {
         githubPush()
-    } 
+    }
+    environment {
+        SONAR_ORG = 'abdulp07-git'
+        SONAR_PROJECT_KEY = 'abdulp07-git_jenkins-week9'
+        SONAR_TOKEN = credentials('SonarCloudToken')  // Retrieves the token stored as Jenkins credential
+    }
 
     stages {
         stage('CheckOut') {
@@ -24,10 +29,10 @@ pipeline {
             steps {
                 withSonarQubeEnv('MySonarCloud') {
                     sh 'mvn clean verify sonar:sonar \
-                        -Dsonar.token=338fc2a1e13ecf48a1960961105dade4785c7300 \
+                        -Dsonar.token=${env.SONAR_TOKEN} \
                         -Dsonar.host.url=https://sonarcloud.io \
-                        -Dsonar.organization=abdulp07-git \
-                        -Dsonar.projectKey=abdulp07-git_jenkins-week9'
+                        -Dsonar.organization=${env.SONAR_ORG} \
+                        -Dsonar.projectKey=${env.SONAR_PROJECT_KEY}'
                 }
             }
         }
