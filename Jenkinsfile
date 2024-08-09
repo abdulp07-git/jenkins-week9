@@ -28,11 +28,14 @@ pipeline {
         stage('SonarCloud analysis') {
             steps {
                 withSonarQubeEnv('MySonarCloud') {
-                    sh 'mvn clean verify sonar:sonar \
+                    sh  '''
+			#!/bin/bash
+			mvn clean verify sonar:sonar \
                         -Dsonar.login=${env.SONAR_TOKEN} \
                         -Dsonar.host.url=https://sonarcloud.io \
                         -Dsonar.organization=${env.SONAR_ORG} \
-                        -Dsonar.projectKey=${env.SONAR_PROJECT_KEY}'
+                        -Dsonar.projectKey=${env.SONAR_PROJECT_KEY}
+		    '''
                 }
             }
         }
