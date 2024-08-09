@@ -31,10 +31,10 @@ pipeline {
                     sh  '''
 			#!/bin/bash
 			mvn clean verify sonar:sonar \
-                        -Dsonar.login=${env.SONAR_TOKEN} \
+                        -Dsonar.login=${SONAR_TOKEN} \
                         -Dsonar.host.url=https://sonarcloud.io \
-                        -Dsonar.organization=${env.SONAR_ORG} \
-                        -Dsonar.projectKey=${env.SONAR_PROJECT_KEY}
+                        -Dsonar.organization=${SONAR_ORG} \
+                        -Dsonar.projectKey=${SONAR_PROJECT_KEY}
 		    '''
                 }
             }
